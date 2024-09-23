@@ -1,0 +1,1 @@
+# plugins-variation-swatches-style
