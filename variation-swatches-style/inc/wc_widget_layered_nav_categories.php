@@ -15,9 +15,9 @@ if ( ! class_exists( 'Smart_Filter_Widget' ) )
 			// Configure widget array
 			$args = array( 
 				// Widget Backend label
-				'label' => __( '+ Smart Swatches Filter Products', 'multipurpose-shop' ), 
+				'label' => __( '+ Smart Swatches Filter Products', 'variation-swatches-style' ), 
 				// Widget Backend Description								
-				'description' => __( 'Product Filter by Swatches ', 'multipurpose-shop' ), 		
+				'description' => __( 'Product Filter by Swatches ', 'variation-swatches-style' ), 		
 			 );
 		
 			// Configure the widget fields
@@ -29,9 +29,9 @@ if ( ! class_exists( 'Smart_Filter_Widget' ) )
 				// Title field
 				array( 		
 					// field name/label									
-					'name' => __( 'Title', 'multipurpose-shop' ), 		
+					'name' => __( 'Title', 'variation-swatches-style' ), 		
 					// field description					
-					'desc' => __( 'Filter Products by Widget Description.', 'multipurpose-shop' ), 
+					'desc' => __( 'Filter Products by Widget Description.', 'variation-swatches-style' ), 
 					// field id		
 					'id' => 'title', 
 					// field type ( text, checkbox, textarea, select, select-group )								
@@ -39,14 +39,14 @@ if ( ! class_exists( 'Smart_Filter_Widget' ) )
 					// class, rows, cols								
 					'class' => 'widefat', 	
 					// default value						
-					'std' => __( 'Filter Products by', 'multipurpose-shop' ), 
+					'std' => __( 'Filter Products by', 'variation-swatches-style' ), 
 					'validate' => 'alpha_dash', 
 					'filter' => 'strip_tags|esc_attr'	
 				 ), 
 				// Amount Field
 				array( 
-					'name' => __( 'Attribute' ), 							
-					'desc' => __( 'Select the Attribute.', 'multipurpose-shop' ), 
+					'name' => __( 'Attribute','variation-swatches-style' ), 							
+					'desc' => __( 'Select the Attribute.', 'variation-swatches-style' ), 
 					'id' => 'attribute_id', 							
 					'type'=>'select', 				
 					// selectbox fields			
@@ -292,9 +292,9 @@ add_action('pre_get_posts','shop_filter_cat');
 		
 		if ( ! is_admin() && $query->is_main_query()  && ( is_product_category() || is_shop() ) ){	
 		  $array =  array (
-					'taxonomy' => esc_attr($_REQUEST['smart_taxonomy']),
+					'taxonomy' => esc_attr(add_magic_quotes($_REQUEST['smart_taxonomy'])),
 					'field' => 'slug',
-					'terms' => esc_attr($_REQUEST['slug_terms'])
+					'terms' => esc_attr(add_magic_quotes($_REQUEST['slug_terms']))
 				);
 					
 		    $query->set('tax_query', array( $array  ));   

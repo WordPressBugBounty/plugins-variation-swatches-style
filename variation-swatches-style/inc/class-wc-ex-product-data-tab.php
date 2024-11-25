@@ -35,7 +35,7 @@ class WC_EX_Product_Data_Tab_Swatches {
 		
 	public function eds_add_my_custom_product_data_tab( $product_data_tabs ) {
 		$product_data_tabs['woo-variations-style'] = array(
-			'label' => __( 'Variation Swatches', 'smart-variation-swatches' ),
+			'label' => __( 'Variation Swatches', 'variation-swatches-style' ),
 			'target' => 'woo_variations_style',
 			'class' => array( 'show_if_variable' )
 		);
@@ -77,10 +77,10 @@ class WC_EX_Product_Data_Tab_Swatches {
 			<table class="wcsap widefat">
 				<thead>
 				<th class="attribute_swatch_label">
-					<?php _e( 'Product Attribute Name', 'smart-variation-swatches' ); ?>
+					<?php esc_attr_e( 'Product Attribute Name', 'variation-swatches-style' ); ?>
 				</th>
 				<th class="attribute_swatch_type">
-					<span><?php _e( 'Attribute Control Type', 'smart-variation-swatches' ); ?></span>
+					<span><?php esc_attr_e( 'Attribute Control Type', 'variation-swatches-style' ); ?></span>
 				</th>
 				</thead>
 			</table>
@@ -138,18 +138,18 @@ class WC_EX_Product_Data_Tab_Swatches {
 								<tbody>
 									<tr>
 										<td class="attribute_swatch_label">
-											<strong><a class="wcsap_edit_field row-title" href="javascript:;"><?php echo $current_label; ?></a></strong>
+											<strong><a class="wcsap_edit_field row-title" href="javascript:;"><?php echo esc_attr( $current_label ); ?></a></strong>
 										</td>
 										<td class="attribute_swatch_type">
                                         
-                                            <select class="_swatch_type_options_type" id="_swatch_type_options_<?php echo isset($key_attr) ? $key_attr : ''; ?>_type" name="_swatch_type_options[<?php echo $key; ?>][type]">
-                                                <option <?php selected( $current_type, 'default' ); ?> value="default"><?php _e( 'None', 'smart-variation-swatches' ); ?></option>
+                                            <select class="_swatch_type_options_type" id="_swatch_type_options_<?php echo isset($key_attr) ? esc_attr( $key_attr ) : ''; ?>_type" name="_swatch_type_options[<?php echo esc_attr( $key ); ?>][type]">
+                                                <option <?php selected( $current_type, 'default' ); ?> value="default"><?php esc_html_e( 'None', 'variation-swatches-style' ); ?></option>
                                                 <?php if ( $current_is_taxonomy ) : ?>
-                                                    <option <?php selected( $current_type, 'term_options' ); ?> value="term_options"><?php _e( 'Taxonomy Lebel, Colors and Images', 'smart-variation-swatches' ); ?></option>
+                                                    <option <?php selected( $current_type, 'term_options' ); ?> value="term_options"><?php esc_html_e( 'Taxonomy Lebel, Colors and Images', 'variation-swatches-style' ); ?></option>
                                                 <?php endif; ?>
-                                                <option <?php selected( $current_type, 'product_color' ); ?> value="product_color"><?php _e( 'Custom Colors', 'smart-variation-swatches' ); ?></option>
-                                                  <option <?php selected( $current_type, 'product_image' ); ?> value="product_image"><?php _e( 'Custom Images', 'smart-variation-swatches' ); ?></option>
-                                                    <option <?php selected( $current_type, 'product_label' ); ?> value="product_label"><?php _e( 'Custom Lebel', 'smart-variation-swatches' ); ?></option>
+                                                <option <?php selected( $current_type, 'product_color' ); ?> value="product_color"><?php esc_html_e( 'Custom Colors', 'variation-swatches-style' ); ?></option>
+                                                  <option <?php selected( $current_type, 'product_image' ); ?> value="product_image"><?php esc_html_e( 'Custom Images', 'variation-swatches-style' ); ?></option>
+                                                    <option <?php selected( $current_type, 'product_label' ); ?> value="product_label"><?php esc_html_e( 'Custom Lebel', 'variation-swatches-style' ); ?></option>
                                               
                                             
                                             </select>
@@ -177,15 +177,15 @@ class WC_EX_Product_Data_Tab_Swatches {
                                                     <tbody>
                                                    	<?php
 														$active_color = ( isset (  $current_type ) && $current_type != "product_color" ) ? 'hidden':'';
-													$color = ( isset (  $swatch_type_options[ $key ] ) && $swatch_type_options[ $key ][ $attribute_term['id'] ]['color'] != "" ) ? $swatch_type_options[ $key ][ $attribute_term['id'] ]['color'] :'';
+													$color = ( isset (  $swatch_type_options[ $key ] ) && $swatch_type_options[ $key ][ $attribute_term['id'] ]['color'] != "" ) ? esc_attr( $swatch_type_options[ $key ][ $attribute_term['id'] ]['color'] ) :'';
 													
 													?>   
-                                                        <tr class="field_option field_option_color <?php echo $active_color;?>">
+                                                        <tr class="field_option field_option_color <?php echo esc_attr( $active_color );?>">
                                                             <td class="label" width="25%">
                                                                <?php echo esc_html( $attribute_term['label'] ); ?> 
                                                             </td>
                                                             <td class="section-color-swatch">
-                                                          <input type="text" class="atawc_color_picker" name="_swatch_type_options[<?php echo $key; ?>][<?php echo esc_attr( $attribute_term['id'] ); ?>][color]" value="<?php echo esc_attr( $color ); ?>">
+                                                          <input type="text" class="atawc_color_picker" name="_swatch_type_options[<?php echo esc_attr( $key ); ?>][<?php echo esc_attr( $attribute_term['id'] ); ?>][color]" value="<?php echo esc_attr( $color ); ?>">
                                                                 
                                                             </td>
                                                         </tr>
@@ -195,11 +195,11 @@ class WC_EX_Product_Data_Tab_Swatches {
 													$active_image = ( isset (  $current_type ) && $current_type != "product_image" ) ? 'hidden':'';
 													$image_array = ( isset (  $swatch_type_options[ $key ] ) && $swatch_type_options[ $key ][ $attribute_term['id'] ]['image'] != "" ) ? wp_get_attachment_image_src( $swatch_type_options[ $key ][ $attribute_term['id'] ]['image'] ) : '';		
 													
-													$image_preview = is_array($image_array) ? $image_array[0] : $image;		
+													$image_preview = is_array($image_array) ? esc_html( $image_array[0] ) : esc_html( $image );		
 													
 													$img_id = ( isset (  $swatch_type_options[ $key ] ) && $swatch_type_options[ $key ][ $attribute_term['id'] ]['image'] != "" ) ? $swatch_type_options[ $key ][ $attribute_term['id'] ]['image'] : '';	
 													?>            
-                                                        <tr class="field_option field_option_image <?php echo $active_image;?>">
+                                                        <tr class="field_option field_option_image <?php echo esc_attr( $active_image );?>">
                                                             <td class="label" width="25%">
                                                                 <?php echo esc_html( $attribute_term['label'] ); ?> 
                                                             </td>
@@ -208,12 +208,12 @@ class WC_EX_Product_Data_Tab_Swatches {
     	
                                                 <img src="<?php echo esc_url( $image_preview ) ?>" width="60px" height="60px" />
                                               
-                                                <input type="hidden" class="atawc-term-image" name="_swatch_type_options[<?php echo $key; ?>][<?php echo esc_attr( $attribute_term['id'] ); ?>][image]" value="<?php echo esc_attr( $img_id ) ?>" />
+                                                <input type="hidden" class="atawc-term-image" name="_swatch_type_options[<?php echo esc_attr( $key ); ?>][<?php echo esc_attr( $attribute_term['id'] ); ?>][image]" value="<?php echo esc_attr( $img_id ) ?>" />
                                                 
                                                 
                                                 
-                                                <a href="javascript:void(0)" class="button ata_woo_meta_uploader" data-uploader-title="Add image(s) to  <?php echo esc_attr( $attribute_term['label'] ); ?>" data-uploader-button-text="Add image(s)  <?php echo esc_attr( $attribute_term['label'] ); ?> "> <?php _e( 'Upload/Add image', 'smart-variation-swatches' ); ?></a>
-                                                <a ref="javascript:void(0)" class="remove_ata_woo_meta_img button "><?php _e( 'Remove image', 'smart-variation-swatches' ); ?></a>
+                                                <a href="javascript:void(0)" class="button ata_woo_meta_uploader" data-uploader-title="Add image(s) to  <?php echo esc_attr( $attribute_term['label'] ); ?>" data-uploader-button-text="Add image(s)  <?php echo esc_attr( $attribute_term['label'] ); ?> "> <?php esc_html_e( 'Upload/Add image', 'variation-swatches-style' ); ?></a>
+                                                <a ref="javascript:void(0)" class="remove_ata_woo_meta_img button "><?php esc_html_e( 'Remove image', 'variation-swatches-style' ); ?></a>
                                                 
                                                 </td>
                                                         </tr>
@@ -221,7 +221,7 @@ class WC_EX_Product_Data_Tab_Swatches {
                                                <?php
 													$active_label = ( isset (  $current_type ) && $current_type != "product_lebel" ) ? 'hidden':'';
 													?>          
-                                                        <tr class="field_option field_option_label <?php echo $active_label;?> ">
+                                                        <tr class="field_option field_option_label <?php echo esc_html( $active_label );?> ">
                                                             <td class="label" width="25%">
                                                               <?php echo esc_html( $attribute_term['label'] ); ?> 
                                                             </td>
@@ -230,12 +230,12 @@ class WC_EX_Product_Data_Tab_Swatches {
 														<?php
                                                        
                                                         $options = atawcvs_get_option('atawc_label');
-                                                        $width = ( isset( $options['lebel_variation_width'] ) && $options['lebel_variation_width'] != "" ) ? $options['lebel_variation_width'] : 44 ;
-                                                        $height = ( isset( $options['lebel_variation_height'] ) && $options['lebel_variation_height'] != "" ) ? $options['lebel_variation_height'] : 44 ;
+                                                        $width = ( isset( $options['lebel_variation_width'] ) && $options['lebel_variation_width'] != "" ) ? esc_attr( $options['lebel_variation_width'] ) : 44 ;
+                                                        $height = ( isset( $options['lebel_variation_height'] ) && $options['lebel_variation_height'] != "" ) ? esc_attr( $options['lebel_variation_height'] ) : 44 ;
                                                         $style = ( isset( $options['lebel_variation_style'] ) && $options['lebel_variation_style'] != "" ) ? $options['lebel_variation_style'] : 'square' ;
 														
                                                         
-                                                        printf( '<div class="swatch-preview swatch-label %4$s" style="width:%2$spx; height:%2$spx ; line-height:%2$spx">%s</div>', esc_html( $attribute_term['label'] ), $width, $height, $style );
+                                                        printf( '<div class="swatch-preview swatch-label %4$s" style="width:%2$spx; height:%2$spx ; line-height:%2$spx">%s</div>', esc_html( $attribute_term['label'] ), esc_attr( $width ), esc_attr( $height), esc_attr( $style) );
                                                         ?>
                                                                 
                                                             </td>
@@ -257,7 +257,7 @@ class WC_EX_Product_Data_Tab_Swatches {
 					<?php
 				endforeach;
 			else :
-				echo '<p>' . __( 'Add a at least one attribute / variation combination to this product that has been configured with color swatches or photos. After you add the attributes from the "Attributes" tab and create a variation, save the product and you will see the option to configure the swatch or photo picker here.', 'smart-variation-swatches' ) . '</p>';
+				echo '<p>' . esc_html__( 'Add a at least one attribute / variation combination to this product that has been configured with color swatches or photos. After you add the attributes from the "Attributes" tab and create a variation, save the product and you will see the option to configure the swatch or photo picker here.', 'variation-swatches-style' ) . '</p>';
 			endif;
 			?>
 
@@ -276,7 +276,7 @@ class WC_EX_Product_Data_Tab_Swatches {
 	
         $product = wc_get_product($post_id);
 
-		$swatch_type_options = isset( $_POST['_swatch_type_options'] ) ? $_POST['_swatch_type_options'] : false;
+		$swatch_type_options = !empty( $_POST['_swatch_type_options'] ) ? wp_unslash( $_POST['_swatch_type_options'] ) : false;
 		$swatch_type = 'default';
 
 		if ( $swatch_type_options && is_array( $swatch_type_options ) ) {

@@ -75,6 +75,7 @@ if ( ! class_exists( 'WPH_Widget' ) )
             $instance = $old_instance;
             
             $this->before_update_fields();
+            if( !empty( $this->fields ) ):
             foreach ( $this->fields as $key ) {
                 $slug = $key['id'];
                 if ( isset( $key['validate'] ) ) {
@@ -84,8 +85,9 @@ if ( ! class_exists( 'WPH_Widget' ) )
                 if ( isset( $key['filter'] ) )
                     $instance[$slug] = $this->filter( $key['filter'], $new_instance[$slug] );
                 else
-                    $instance[$slug] = strip_tags( $new_instance[$slug] );
+                    $instance[$slug] = wp_strip_all_tags( $new_instance[$slug] );
             }
+            endif;
             
             return $this->after_validate_fields( $instance );
         }
@@ -220,8 +222,8 @@ if ( ! class_exists( 'WPH_Widget' ) )
         {
             switch ( $filter ) 
             {
-                case 'strip_tags':
-                    return strip_tags( $value );
+                case 'wp_strip_all_tags':
+                    return wp_strip_all_tags( $value );
                 break;
                 case 'wp_strip_all_tags':
                     return wp_strip_all_tags( $value );
@@ -303,7 +305,7 @@ if ( ! class_exists( 'WPH_Widget' ) )
             $slug = $key['id'];
                     
             if ( isset( $this->instance[$slug] ) )
-                $key['value'] = empty( $this->instance[$slug] ) ? '' : strip_tags( $this->instance[$slug] );
+                $key['value'] = empty( $this->instance[$slug] ) ? '' : wp_strip_all_tags( $this->instance[$slug] );
             else
                 unset( $key['value'] );
             /* Set field id and name  */
@@ -336,7 +338,7 @@ if ( ! class_exists( 'WPH_Widget' ) )
             if ( isset( $key['class'] ) )
                 $out .= 'class="' . esc_attr( $key['class'] ) . '" ';
             $value = isset( $key['value'] ) ? $key['value'] : $key['std'];
-            $out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+            $out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
             if ( isset( $key['size'] ) )
                 $out .= 'size="' . esc_attr( $key['size'] ) . '" ';             
             $out .= ' />';
@@ -420,7 +422,7 @@ if ( ! class_exists( 'WPH_Widget' ) )
             $selected = isset( $key['value'] ) ? $key['value'] : $key['std'];
                 foreach ( $key['fields'] as $field => $option ) 
                 {
-                    $out .= '<option value="' . esc_attr__( $option['value'] ) . '" ';
+                    $out .= '<option value="' . esc_attr( $option['value'] ) . '" ';
                     if ( esc_attr( $selected ) == $option['value'] )
                         $out .= ' selected="selected" ';
                     $out .= '> '.esc_html( $option['name'] ).'</option>';
@@ -486,7 +488,7 @@ if ( ! class_exists( 'WPH_Widget' ) )
             if ( isset( $key['class'] ) )
                 $out .= 'class="' . esc_attr( $key['class'] ) . '" ';
             $value = isset( $key['value'] ) ? $key['value'] : $key['std'];
-            $out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+            $out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
             if ( isset( $key['size'] ) )
                 $out .= 'size="' . esc_attr( $key['size'] ) . '" ';             
             $out .= ' />';

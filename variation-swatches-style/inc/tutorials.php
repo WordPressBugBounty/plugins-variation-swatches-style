@@ -2,7 +2,7 @@
 
     <ul>
         <li>
-            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo plugins_url( '/assets/img/tutorial_1.jpg',dirname( __FILE__ )) ;?>"></div>
+            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo esc_url( plugins_url( '/assets/img/tutorial_1.jpg',dirname( __FILE__ )) );?>"></div>
             <div class="tutorial-description-wrapper">
                 <h3>Smart Variation Swatches for WooCommerce</h3>
                 <div class="tutorial-contents">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="https://athemeart.dev/demo/smart-swatches/?product_cat=common" target="_blank" class="button button-live-demo">Live Video Preview</a>
-                    <a href="https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/installation/" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="https://docs.athemeart.com/docs/variation-swatches-style-plugins-documentation/installation/" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>

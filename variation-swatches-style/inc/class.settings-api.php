@@ -375,7 +375,7 @@ class WeDevs_Settings_API_Swatches {
         $value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
         $id    = $args['section']  . '[' . $args['id'] . ']';
-        $label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File' );
+        $label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File','variation-swatches-style' );
 
         $html  = sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
         $html  .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
@@ -544,7 +544,7 @@ class WeDevs_Settings_API_Swatches {
         ?>
         <div class="metabox-holder metabox-holder-athemeart">
             <?php foreach ( $this->settings_sections as $form ) { ?>
-                <div id="<?php echo $form['id']; ?>" class="group" style="display: none;">
+                <div id="<?php echo esc_attr( $form['id'] ); ?>" class="group" style="display: none;">
                 
                 	<?php if ( !empty( $form["id"] ) && $form["id"] == 'atawc_tutorials' ) :?>
                     <h2>How to tutorials</h2>
@@ -552,12 +552,12 @@ class WeDevs_Settings_API_Swatches {
 						<?php 
 						require( plugin_dir_path( __FILE__ ).'/tutorials.php'); ?>
                     <?php elseif($form["id"] == 'atawc_images' ) : ?>   
-                     <h2><?php echo esc_html__('Images Swatches Settings','smart-variation-swatches');?></h2>
-                     <a href="https://athemeart.com/downloads/smart-variation-swatches-woocommerce-pro/" target="_blank"><img alt="" src="<?php echo plugins_url( '/assets/img/color_swatches.png',dirname( __FILE__ )) ;?>"></a>
+                     <h2><?php echo esc_html__('Images Swatches Settings','variation-swatches-style');?></h2>
+                     <a href="https://athemeart.com/downloads/smart-variation-swatches-woocommerce-pro/" target="_blank"><img alt="" src="<?php echo esc_url( plugins_url( '/assets/img/color_swatches.png',dirname( __FILE__ )) ) ;?>"></a>
                      
                      <?php elseif($form["id"] == 'archive_settings' ) : ?>   
-                     <h2><?php echo esc_html__('Images Swatches Settings','smart-variation-swatches');?></h2>
-                     <a href="https://athemeart.com/downloads/smart-variation-swatches-woocommerce-pro/" target="_blank"><img alt="" src="<?php echo plugins_url( '/assets/img/archive_swatches.png',dirname( __FILE__ )) ;?>"></a>
+                     <h2><?php echo esc_html__('Images Swatches Settings','variation-swatches-style');?></h2>
+                     <a href="https://athemeart.com/downloads/smart-variation-swatches-woocommerce-pro/" target="_blank"><img alt="" src="<?php echo esc_attr( plugins_url( '/assets/img/archive_swatches.png',dirname( __FILE__ )) );?>"></a>
                      
                     <?php else: ?>
                     <form method="post" action="options.php">

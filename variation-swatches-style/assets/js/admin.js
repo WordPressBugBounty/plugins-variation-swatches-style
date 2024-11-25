@@ -81,7 +81,7 @@ jQuery( document ).ready( function ( $ ) {
 			
 			if( target.match(/atawc_tutorials/g) ){	
 				// location.replace( bcf_url.home + target);
-				 window.open("https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/"); 
+				 window.open("https://docs.athemeart.com/docs/variation-swatches-style-plugins-documentation/"); 
 			}
 		});
 	

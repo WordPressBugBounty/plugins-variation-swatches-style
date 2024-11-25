@@ -53,19 +53,19 @@ class ATA_WC_Variation_Swatches_Frontend {
 			<?php if ( isset($options) && is_array( $options )):?> 
 				.atawc-swatches .swatch.swatch-label,
 				ul.smart_attribute.label li  a{
-					font-size:<?php echo ( isset( $options ['lebel_variation_size'] ) ) ? $options ['lebel_variation_size'] : 12;?>px;
-					color:<?php echo ( isset( $options ['lebel_variation_color'] ) ) ? $options ['lebel_variation_color'] : '#c8c8c8';?>;
-					background:<?php echo ( isset( $options ['lebel_variation_background'] ) ) ? $options ['lebel_variation_background'] : '#fff';?>;
-					border:1px solid <?php echo ( isset( $options ['lebel_variation_border'] ) ) ? $options ['lebel_variation_border'] : '#000';?>;
+					font-size:<?php echo ( isset( $options ['lebel_variation_size'] ) ) ? esc_attr( $options ['lebel_variation_size'] ) : 12;?>px;
+					color:<?php echo ( isset( $options ['lebel_variation_color'] ) ) ? esc_attr( $options ['lebel_variation_color'] ) : '#c8c8c8';?>;
+					background:<?php echo ( isset( $options ['lebel_variation_background'] ) ) ? esc_attr($options ['lebel_variation_background']) : '#fff';?>;
+					border:1px solid <?php echo ( isset( $options ['lebel_variation_border'] ) ) ? esc_attr( $options ['lebel_variation_border'] ) : '#000';?>;
 					
 				}
 				.atawc-swatches .swatch.swatch-label:hover,
 				.atawc-swatches .swatch.swatch-label.selected,
 				ul.smart_attribute.label li  a:hover,
 				ul.smart_attribute.label li  a.active{
-					color:<?php echo ( isset( $options ['lebel_variation_color_hover'] ) ) ? $options ['lebel_variation_color_hover'] : '#000';?>;
-					background:<?php echo ( isset( $options ['lebel_variation_background_hover'] ) ) ? $options ['lebel_variation_background_hover'] : '#c8c8c8';?>;
-					border:1px solid <?php echo ( isset( $options ['lebel_variation_border_hover'] ) ) ? $options ['lebel_variation_border_hover'] : '#c8c8c8';?>;
+					color:<?php echo ( isset( $options ['lebel_variation_color_hover'] ) ) ? esc_attr( $options ['lebel_variation_color_hover'] ) : '#000';?>;
+					background:<?php echo ( isset( $options ['lebel_variation_background_hover'] ) ) ? esc_attr( $options ['lebel_variation_background_hover']) : '#c8c8c8';?>;
+					border:1px solid <?php echo ( isset( $options ['lebel_variation_border_hover'] ) ) ? esc_attr( $options ['lebel_variation_border_hover'] ) : '#c8c8c8';?>;
 				}
 				
 				.ed-tooltip { <?php echo !empty( $general['__swatches_tooltip'] )? 'color:'.esc_attr( $general['__swatches_tooltip'] ).';': '';?>   <?php echo !empty( $general['__swatches_bg'] )? 'background:'.esc_attr( $general['__swatches_bg'] ): '';?>}

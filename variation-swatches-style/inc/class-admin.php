@@ -80,16 +80,16 @@ class ATA_WC_Variation_Swatches_Admin {
 		}
 		<?php if ( isset($options) && is_array( $options )):?> 
 		.swatch-preview.swatch-label{
-			font-size:<?php echo ( isset( $options ['lebel_variation_size'] ) ) ? $options ['lebel_variation_size'] : 12;?>px;
-			color:<?php echo ( isset( $options ['lebel_variation_color'] ) ) ? $options ['lebel_variation_color'] : '#c8c8c8';?>;
-			background:<?php echo ( isset( $options ['lebel_variation_background'] ) ) ? $options ['lebel_variation_background'] : '#fff';?>;
-			border:1px solid <?php echo ( isset( $options ['lebel_variation_border'] ) ) ? $options ['lebel_variation_border'] : '#000';?>;
+			font-size:<?php echo ( isset( $options ['lebel_variation_size'] ) ) ? esc_attr( $options ['lebel_variation_size'] ) : 12;?>px;
+			color:<?php echo ( isset( $options ['lebel_variation_color'] ) ) ? esc_attr( $options ['lebel_variation_color'] ) : '#c8c8c8';?>;
+			background:<?php echo ( isset( $options ['lebel_variation_background'] ) ) ? esc_attr( $options ['lebel_variation_background'] ) : '#fff';?>;
+			border:1px solid <?php echo ( isset( $options ['lebel_variation_border'] ) ) ? esc_attr( $options ['lebel_variation_border'] ) : '#000';?>;
 			
 		}
 		.swatch-preview.swatch-label:hover{
-			color:<?php echo ( isset( $options ['lebel_variation_color_hover'] ) ) ? $options ['lebel_variation_color_hover'] : '#000';?>;
-			background:<?php echo ( isset( $options ['lebel_variation_background_hover'] ) ) ? $options ['lebel_variation_background_hover'] : '#c8c8c8';?>;
-			border:1px solid <?php echo ( isset( $options ['lebel_variation_border_hover'] ) ) ? $options ['lebel_variation_border_hover'] : '#c8c8c8';?>;
+			color:<?php echo ( isset( $options ['lebel_variation_color_hover'] ) ) ? esc_attr( $options ['lebel_variation_color_hover']) : '#000';?>;
+			background:<?php echo ( isset( $options ['lebel_variation_background_hover'] ) ) ? esc_attr( $options ['lebel_variation_background_hover'])  : '#c8c8c8';?>;
+			border:1px solid <?php echo ( isset( $options ['lebel_variation_border_hover'] ) ) ? esc_attr( $options ['lebel_variation_border_hover'])  : '#c8c8c8';?>;
 		}
 		<?php endif;?>
 		
@@ -116,8 +116,8 @@ class ATA_WC_Variation_Swatches_Admin {
 			'atawc',
 			array(
 				'i18n'        => array(
-					'mediaTitle'  => esc_html__( 'Choose an image', 'smart-variation-swatches' ),
-					'mediaButton' => esc_html__( 'Use image', 'smart-variation-swatches' ),
+					'mediaTitle'  => esc_html__( 'Choose an image', 'variation-swatches-style' ),
+					'mediaButton' => esc_html__( 'Use image', 'variation-swatches-style' ),
 				),
 				'placeholder' => WC()->plugin_url() . '/assets/images/placeholder.png'
 			)
@@ -186,8 +186,8 @@ class ATA_WC_Variation_Swatches_Admin {
 
 
 
-<a href="javascript:void(0)" class="button ata_woo_meta_uploader" data-uploader-title="<?php _e( 'Add image to Attribute ', 'smart-variation-swatches' ); ?>" data-uploader-button-text="<?php _e( 'Add image to Attribute ', 'smart-variation-swatches' ); ?>  "> <?php _e( 'Upload/Add image', 'smart-variation-swatches' ); ?></a>
-<a ref="javascript:void(0)" class="remove_ata_woo_meta_img button "><?php _e( 'Remove image', 'smart-variation-swatches' ); ?></a>
+<a href="javascript:void(0)" class="button ata_woo_meta_uploader" data-uploader-title="<?php esc_attr_e( 'Add image to Attribute ', 'variation-swatches-style' ); ?>" data-uploader-button-text="<?php esc_attr_e( 'Add image to Attribute ', 'variation-swatches-style' ); ?>  "> <?php esc_attr_e( 'Upload/Add image', 'variation-swatches-style' ); ?></a>
+<a ref="javascript:void(0)" class="remove_ata_woo_meta_img button "><?php esc_attr_e( 'Remove image', 'variation-swatches-style' ); ?></a>
 </div>
 <div style="clear:both"></div>
 				<?php
@@ -218,8 +218,10 @@ class ATA_WC_Variation_Swatches_Admin {
 	 */
 	public function save_term_meta( $term_id, $tt_id ) {
 		foreach ( ATA_WCVS()->types as $type => $label ) {
-			if ( isset( $_POST[$type] ) ) {
-				update_term_meta( $term_id, $type, $_POST[$type] );
+			if ( !empty( $_POST[$type] ) ) {
+				$sanitized_value = sanitize_text_field( wp_unslash( $_POST[ $type ] ) );
+				update_term_meta( $term_id, $type, $sanitized_value );
+
 			}
 		}
 	}
@@ -239,7 +241,7 @@ class ATA_WC_Variation_Swatches_Admin {
 		global $thepostid;
 		?>
 
-		<select multiple="multiple" data-placeholder="<?php esc_attr_e( 'Select terms', 'smart-variation-swatches' ); ?>" class="multiselect attribute_values wc-enhanced-select" name="attribute_values[<?php echo $index; ?>][]">
+		<select multiple="multiple" data-placeholder="<?php esc_attr_e( 'Select terms', 'variation-swatches-style' ); ?>" class="multiselect attribute_values wc-enhanced-select" name="attribute_values[<?php echo esc_attr($index); ?>][]">
 			<?php
 
 			$all_terms = get_terms( $taxonomy_name, apply_filters( 'woocommerce_product_attribute_terms', array( 'orderby' => 'name', 'hide_empty' => false ) ) );
@@ -250,9 +252,9 @@ class ATA_WC_Variation_Swatches_Admin {
 			}
 			?>
 		</select>
-		<button class="button plus select_all_attributes"><?php esc_html_e( 'Select all', 'smart-variation-swatches' ); ?></button>
-		<button class="button minus select_no_attributes"><?php esc_html_e( 'Select none', 'smart-variation-swatches' ); ?></button>
-		<button class="button fr plus atawc_add_new_attribute" data-type="<?php echo $taxonomy->attribute_type ?>"><?php esc_html_e( 'Add new', 'smart-variation-swatches' ); ?></button>
+		<button class="button plus select_all_attributes"><?php echo esc_html__( 'Select all', 'variation-swatches-style' ); ?></button>
+		<button class="button minus select_no_attributes"><?php echo esc_html__( 'Select none', 'variation-swatches-style' ); ?></button>
+		<button class="button fr plus atawc_add_new_attribute" data-type="<?php echo esc_attr( $taxonomy->attribute_type ) ?>"><?php echo esc_html__( 'Add new', 'variation-swatches-style' ); ?></button>
 
 		<?php
 	}
@@ -281,7 +283,7 @@ class ATA_WC_Variation_Swatches_Admin {
 	 * @param $term_id
 	 */
 	public function add_attribute_column_content( $columns, $column, $term_id ) {
-		$attr  = ATA_WCVS()->get_tax_attribute( $_REQUEST['taxonomy'] );
+		$attr  = ATA_WCVS()->get_tax_attribute( wp_unslash( $_REQUEST['taxonomy'] ) );
 		$value = get_term_meta( $term_id, $attr->attribute_type, true );
 
 		switch ( $attr->attribute_type ) {
@@ -291,7 +293,7 @@ class ATA_WC_Variation_Swatches_Admin {
 				$height = ( isset( $options['color_variation_height'] ) && $options['color_variation_height'] != "" ) ? $options['color_variation_height'] : 40 ;
 				$style = ( isset( $options['color_variation_style'] ) && $options['color_variation_style'] != "" ) ? $options['color_variation_style'] : 'round' ;
 				
-				printf( '<div class="swatch-preview swatch-color %4$s" style="background-color:%1$s; width:%2$spx; height:%3$spx"></div>', esc_attr( $value ),$width, $height, $style );
+				printf( '<div class="swatch-preview swatch-color %4$s" style="background-color:%1$s; width:%2$spx; height:%3$spx"></div>', esc_attr( $value ),esc_attr($width), esc_attr( $height ), esc_attr( $style ) );
 				break;
 
 			case 'image':
@@ -303,7 +305,7 @@ class ATA_WC_Variation_Swatches_Admin {
 				
 				$image = $value ? wp_get_attachment_image_src( $value ) : '';
 				$image = $image ? $image[0] : WC()->plugin_url() . '/assets/images/placeholder.png';
-				printf( '<img class="swatch-preview swatch-image %4$s" src="%1$s" width="%2$spx" height="%3$spx" style="width:%2$spx; height:%2$spx">', esc_url( $image ), $width, $height, $style );
+				printf( '<img class="swatch-preview swatch-image %4$s" src="%1$s" width="%2$spx" height="%3$spx" style="width:%2$spx; height:%2$spx">', esc_url( $image ), esc_attr($width), esc_attr( $height ), esc_attr( $style ) );
 				break;
 
 			case 'label':
@@ -313,7 +315,7 @@ class ATA_WC_Variation_Swatches_Admin {
 				$height = ( isset( $options['lebel_variation_height'] ) && $options['lebel_variation_height'] != "" ) ? $options['lebel_variation_height'] : 44 ;
 				$style = ( isset( $options['lebel_variation_style'] ) && $options['lebel_variation_style'] != "" ) ? $options['lebel_variation_style'] : 'square' ;
 				
-				printf( '<div class="swatch-preview swatch-label %4$s" style="width:%2$spx; height:%2$spx ; line-height:%2$spx">%s</div>', esc_html( $term->name ), $width, $height, $style );
+				printf( '<div class="swatch-preview swatch-label %4$s" style="width:%2$spx; height:%2$spx ; line-height:%2$spx">%s</div>', esc_html( $term->name ), esc_attr( $width ), esc_attr( $height ), esc_attr( $style ) );
 				break;
 			case 'radio':
 				printf( '<input type="radio" name="radio[]" />');
