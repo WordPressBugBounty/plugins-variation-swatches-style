@@ -60,7 +60,7 @@ Install Unlimited Background Slider just like any other WordPress plugin.
 == Frequently Asked Questions ==
 
 = How to use this variation swatches WooCommerce extension? =
-Go to WooCommerce > settings > Product Swatches. and learn more with [__online documentation and user guide__] (https://docs.athemeart.com/docs/variation-swatches-style-plugins-documentation/)
+Go to WooCommerce > settings > Product Swatches. and learn more with [__online documentation and user guide__] (https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/)
 
 = Will this plugin work with my theme? =
 Yes, it will work with any theme, but may require some styling to make it match nicely.
@@ -75,6 +75,9 @@ Yes, it will work with any theme, but may require some styling to make it match 
 5. Variations Options
 
 == Changelog ==
+
+= 1.4.0 =
+* Fixed WooCommerce's High-Performance Order Storage (HPOS). 
 
 = 1.3.6 =
 * Tested up to: 6.2.2

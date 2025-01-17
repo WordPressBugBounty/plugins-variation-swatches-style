@@ -10,7 +10,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="https://athemeart.dev/demo/smart-swatches/?product_cat=common" target="_blank" class="button button-live-demo">Live Video Preview</a>
-                    <a href="https://docs.athemeart.com/docs/variation-swatches-style-plugins-documentation/installation/" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/installation/" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>

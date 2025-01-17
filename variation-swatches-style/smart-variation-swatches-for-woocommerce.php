@@ -2,8 +2,8 @@
 /*
 Plugin Name: Smart Variation Swatches and Attribute Filters for WooCommerce
 Plugin URI: https://athemeart.net/downloads/variation-swatches-style-woocommerce-pro/
-Description: Learn more https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/
-Version: 1.3.9
+Description: An extension of WooCommerce that make variable products be more beauty and friendly with customers.
+Version: 1.4.0
 Author: aThemeArt
 Author URI: http://athemeart.net/
 License: GPLv2 or later
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: variation-swatches-style 
 Domain Path: /languages/
 Tested up to: 7.6.2
-WC requires at least:3
+WC requires at least:7
 WC tested up to: 10.9.3
 */
 
@@ -191,7 +191,7 @@ final class ATA_WC_Variation_Swatches {
 													 'utm_source'   => 'wp-admin-plugins',
 													 'utm_medium'   => 'row-meta-link',
 													 'utm_campaign' => 'variation-swatches-style',
-												 ), 'https://docs.athemeart.com/docs/variation-swatches-style-plugins-documentation/' ) );
+												 ), 'https://docs.athemeart.com/docs/smart-variation-swatches-plugins-documentation/' ) );
 			
 			
 			$links[ 'documentation' ] = '<a target="_blank" href="' . esc_url( $documentation_url ) . '" title="' . esc_attr( esc_html__( 'Read Documentation', 'variation-swatches-style' ) ) . '">' . esc_html__( 'Read Documentation', 'variation-swatches-style' ) . '</a>';
@@ -244,4 +244,12 @@ function ata_wc_variation_swatches_constructor() {
 }
 
 add_action( 'plugins_loaded', 'ata_wc_variation_swatches_constructor' );
+
+function ata_wc_variation_hpos_compatibility() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+}
+add_action( 'before_woocommerce_init', 'ata_wc_variation_hpos_compatibility' );
+
 require_once 'inc/plugins-settings.php';
