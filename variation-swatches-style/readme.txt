@@ -1,9 +1,9 @@
 ﻿=== Smart Variation Swatches and Attribute Filters for WooCommerce ===
 Contributors: aThemeArt
-Tags: Color Buttons, Images Buttons, Radio Buttons, variations, Link variations, Images variations, Color variations, Radio variations, variations radio, variations radio buttons, woocommerce, woocommerce variations, variations link, variations Colors, variations images 
+Tags: variation swatches, woocommerce swatches, variation photos, woocommerce attributes, product attributes
 Requires at least: 4.5
 Tested up to: 7.6.2
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

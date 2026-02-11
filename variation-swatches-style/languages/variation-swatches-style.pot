@@ -409,7 +409,7 @@ msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid ""
-"https://athemeart.net/downloads/variation-swatches-style-woocommerce-pro/"
+"https://athemeart.com/downloads/variation-swatches-style-woocommerce-pro/"
 msgstr ""
 
 #. Description of the plugin/theme

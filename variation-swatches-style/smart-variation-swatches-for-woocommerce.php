@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Smart Variation Swatches and Attribute Filters for WooCommerce
-Plugin URI: https://athemeart.net/downloads/variation-swatches-style-woocommerce-pro/
+Plugin URI: https://athemeart.com/downloads/variation-swatches-style-woocommerce-pro/
 Description: An extension of WooCommerce that make variable products be more beauty and friendly with customers.
 Version: 1.4.0
 Author: aThemeArt
