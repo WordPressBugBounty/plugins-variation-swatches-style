@@ -108,8 +108,8 @@ class ATA_WC_Variation_Swatches_Admin {
 
 		wp_enqueue_media();
 
-		wp_enqueue_style( 'atawc-admin', plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ), array( 'wp-color-picker' ), '20160615' );
-		wp_enqueue_script( 'atawc-admin', plugins_url( '/assets/js/admin.js', dirname( __FILE__ ) ), array( 'jquery', 'wp-color-picker', 'wp-util' ), '20170113', true );
+		wp_enqueue_style( 'atawc-admin', ATA_WCVS_URL . 'assets/css/admin.css', array( 'wp-color-picker' ), ATA_WCVS_VERSION );
+		wp_enqueue_script( 'atawc-admin', ATA_WCVS_URL . 'assets/js/admin.js', array( 'jquery', 'wp-color-picker', 'wp-util' ), ATA_WCVS_VERSION, true );
 
 		wp_localize_script(
 			'atawc-admin',

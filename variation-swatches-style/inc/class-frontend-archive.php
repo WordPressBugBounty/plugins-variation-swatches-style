@@ -22,7 +22,7 @@ class ATA_WC_Variation_Swatches_Frontend_Arachive {
 		
 		$this->options = atawcvs_get_option('archive_settings');
 		//add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		if( $this->options['__swatches_display_on_archive'] == "off" ){ return; }
+		if( empty( $this->options['__swatches_display_on_archive'] ) || $this->options['__swatches_display_on_archive'] == "off" ){ return; }
 		
 		//if( is_product_category() || is_shop() ) return ;
 		

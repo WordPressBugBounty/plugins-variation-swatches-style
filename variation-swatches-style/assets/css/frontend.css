@@ -10,12 +10,11 @@
 }
 
 .atawc-swatches {
-	overflow: hidden;
-	padding: 5px;
+	padding:10px 0;
 }
 .atawc-swatches .swatch.out_of_stock{
 	position:relative;
-    opacity: 0.2;
+
 }
 .atawc-swatches .swatch.out_of_stock::before,
 .atawc-swatches .swatch.out_of_stock::after{
@@ -97,7 +96,19 @@ ul.smart_attribute.label li {
 
 
 .atawc-swatches .swatch-image {
-	overflow: hidden;
+	width: auto;
+	height: auto;
+	position: relative;
+}
+.atawc-swatches .swatch.swatch-image:after {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: 99;
+	content: "";
+	cursor: pointer;
 }
 .swatch.swatch-label.round,
 .atawc-swatches .swatch-color.round,
@@ -145,9 +156,12 @@ ul.smart_attribute.label li {
 	z-index:-1;
 	margin:0px;
 }
+.swatch{
+	position: relative;
+}
 
 .ed-tooltip {
-	display:none;
+	/*display:none;*/
 	position:absolute;
 	background-color:#161616;
 	border-radius:5px;
@@ -159,7 +173,9 @@ ul.smart_attribute.label li {
 	display:block;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	text-indent: 0;
+	bottom: calc(100% + 10px);
 }
 .ed-tooltip:after {
 	top: 100%;
@@ -198,15 +214,9 @@ ul.smart_attribute li{
 	margin:5px;
 	list-style:none;
 	display:inline-block;
-	float:none;
-}
-ul.smart_attribute_as_widgets  a.swatch-color,
-ul.smart_attribute_as_widgets  a.swatch-image{
-	text-indent:-600px;
-	overflow:hidden;	
 }
 ul.smart_attribute.color li a.round{
-	text-indent:-600px;
+	text-indent:-6000px;
 }
 ul.smart_attribute li a.round{
 	-webkit-border-radius:50%;
@@ -237,4 +247,134 @@ ul.smart_attribute.label li  a{
 }
 .smart_attribute_as_widgets li .swatch{
 	display:block;
+}
+/* ===== Improved styles (v2.0) ===== */
+.atawc-swatches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	padding: 8px 0;
+}
+
+.atawc-swatches .swatch {
+	border: 2px solid transparent;
+	box-sizing: border-box;
+	border-radius: 4px;
+	outline: none;
+	position: relative;
+	transition: all 0.2s ease;
+}
+
+.atawc-swatches .swatch:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+
+.atawc-swatches .swatch.selected {
+	border-color: #333;
+	box-shadow: 0 0 0 1px #333;
+}
+
+.atawc-swatches .swatch.round,
+.atawc-swatches .swatch.round.selected {
+	border-radius: 50%;
+}
+
+.atawc-swatches .swatch.round_corner {
+	border-radius: 6px;
+}
+
+/* Better out of stock */
+.atawc-swatches .swatch.out_of_stock {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.atawc-swatches .swatch.out_of_stock::before,
+.atawc-swatches .swatch.out_of_stock::after {
+	background: #c00;
+	height: 1.5px;
+}
+
+/* Tooltip improvements */
+.ed-tooltip {
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-bottom: 8px;
+	padding: 5px 10px;
+	background: #222;
+	color: #fff;
+	font-size: 12px;
+	line-height: 1.3;
+	white-space: nowrap;
+	border-radius: 4px;
+	z-index: 100;
+	pointer-events: none;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.ed-tooltip::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border: 5px solid transparent;
+	border-top-color: #222;
+}
+
+/* Image swatches */
+.atawc-swatches .swatch-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
+}
+
+/* Label / Button style */
+.atawc-swatches .swatch-label {
+	min-width: 36px;
+	padding: 0 10px;
+	font-weight: 500;
+	font-size: 13px;
+}
+
+/* Mobile friendly */
+@media (max-width: 480px) {
+	.atawc-swatches .swatch {
+		margin-right: 6px;
+		margin-bottom: 6px;
+	}
+}
+
+/* Radio & Checkbox styles */
+.atawc-swatches .swatch-radio,
+.atawc-swatches .swatch-checkbox {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	width: auto !important;
+	height: auto !important;
+	min-width: auto;
+	padding: 4px 10px;
+	background: #f8f8f8;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 1.3;
+}
+.atawc-swatches .swatch-radio.selected,
+.atawc-swatches .swatch-checkbox.selected {
+	background: #333;
+	color: #fff;
+	border-color: #333;
+}
+.atawc-swatches .swatch-radio input,
+.atawc-swatches .swatch-checkbox input {
+	margin: 0;
 }
